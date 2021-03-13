@@ -1,3 +1,8 @@
 .hidden {
     display: none;
 }
+
+h1 {
+    color: blueviolet;
+}
+
