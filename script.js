@@ -16,6 +16,8 @@ searchBtn.addEventListener('click', lyricSearch)
 
 function lyricSearch() {
     results.classList.remove("hidden");
+    cardGen.innerHTML = ''
+    lyricsGen.innerHTML = ''
     var userInput = inputVal()
     var musixmatchApiURL = 'https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_lyrics=' + userInput + '&page_size=5&page=1&s_track_rating=desc&apikey=' + musixMatchApiKey
    //setLoading(true);
@@ -45,6 +47,7 @@ function lyricSearch() {
 
     
     })
+    
 }
 
 function generateCard(obj) {
