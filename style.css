@@ -1,3 +1,20 @@
 .hidden {
     display: none;
 }
+
+body {
+    background-color:mediumslateblue;
+}
+
+h1 {
+    font-family: Helvetica, sans-serif;
+    font-style: italic;
+    size:100px;
+    color:white
+}
+
+header {
+margin-right: auto;
+margin-left:auto;
+padding-top: 100px;
+}
