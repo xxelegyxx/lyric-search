@@ -71,10 +71,10 @@ function generateCard(obj) {
 }
 
 function generateLyrics(obj) {
-    lyricsGen.innerHTML += `
+    lyricsGen.innerHTML = `
     <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
-                  <p>${obj}</p>
+                  <pre>${obj}</pre>
                 </div>
               </div>
             </div>
@@ -92,6 +92,7 @@ function getLyrics(id) {
         var lyricGen = data.message.body.lyrics.lyrics_body;
     console.log(lyricGen)
     generateLyrics(lyricGen)
+    console.log(lyricGen)
     })
 }
 
