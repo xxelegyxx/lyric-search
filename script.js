@@ -1,6 +1,7 @@
 // for MusixMatch API search, so can search by LYRICS or ARTIST or SONG
 const musixMatchApiKey = '07aa5ecd02d38ca088c3bbcb58ebaf53';
 const cardGen = document.querySelector('#card-section')
+const lyricsGen = document.querySelector('#lyrics-section')
 
 //youtube API
 const youtubeApiKey = 'AIzaSyBKXGaS0dwFOXnn1DhiFpKrE33E-k8veB4';
@@ -50,16 +51,16 @@ function generateCard(obj) {
     console.log("im here", obj)
     cardGen.innerHTML += `
             <div class="row">
-                <div class="col s12 m6">
+                <div class="col s12">
                   <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                       <span class="card-title" id="title">${obj.trackName}</span>
-                      <p id="artist-name">${obj.artist}</p>
-                      <p id="album-name">${obj.album}</p>
-                      <p id="lyrics">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur esse quod consectetur molestias vero eaque, dicta et repellendus eveniet maiores quo explicabo possimus mollitia architecto asperiores atque sunt sint repudiandae velit cum. Provident laborum, consequuntur nulla quia ut dolore officia? Aliquid iste voluptatibus dignissimos quae odit cumque omnis libero aliquam.</p>
+                      <p id="artist-name">by ${obj.artist}</p>
+                      <p id="album-name">Album Name: ${obj.album}</p>
                     </div>
                     <div class="card-action">
                       <a href="#">Music Video</a>
+                      <a class="waves-effect waves-light btn" onclick="getLyrics(${obj.id})">Show Lyrics</a>
                     </div>
                   </div>
                 </div>
@@ -67,7 +68,32 @@ function generateCard(obj) {
             
             </div>
     `
-    }
+}
+
+function generateLyrics(obj) {
+    lyricsGen.innerHTML += `
+    <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <p>${obj}</p>
+                </div>
+              </div>
+            </div>
+            `
+}
+
+function getLyrics(id) {
+    console.log(id)
+    var musixmatchApiURL = 'https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + id + '&apikey=' + musixMatchApiKey
+    fetch (musixmatchApiURL)
+    .then(function(res){
+        console.log(res)
+        return res.json() })
+    .then(function(data){
+        var lyricGen = data.message.body.lyrics.lyrics_body;
+    console.log(lyricGen)
+    generateLyrics(lyricGen)
+    })
+}
 
 function inputVal() {
         return document.getElementById("searchbar").value;
