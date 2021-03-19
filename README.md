@@ -3,7 +3,7 @@ https://xxelegyxx.github.io/lyric-search/
 
 ## screenshots
 
-![image](https://github.com/xxelegyxx/weather-app/blob/main/Screenshot%20(40).png)
+![image](https://github.com/xxelegyxx/lyric-search/blob/main/screenshot-main.png)
 
 ### Usage
 
@@ -12,6 +12,8 @@ Lyricboo is designed to find the song that's stuck in your head! Users can type 
 Clicking the show lyrics button will generate the song lyrics on the right side of the screen, and clicking the Music Video button will open the official music video on YouTube in a new window.
 
 Lyricboo also highlights the lyrics that the user searched for in a yellow highlight. 
+
+![image](https://github.com/xxelegyxx/lyric-search/blob/main/screenshot-results.png)
 
 ### APIs
 
