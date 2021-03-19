@@ -10,6 +10,7 @@ const youtubeSearch = 'https://www.googleapis.com/youtube/v3/search?part=snippet
 
 const searchBtn = document.getElementById('search-btn')
 const results = document.getElementById('results')
+var userInput;
 
 searchBtn.addEventListener('click', lyricSearch)
 //.body.message.tracklist
@@ -18,7 +19,7 @@ function lyricSearch() {
     results.classList.remove("hidden");
     cardGen.innerHTML = ''
     lyricsGen.innerHTML = ''
-    var userInput = inputVal()
+    userInput = inputVal()
     var musixmatchApiURL = 'https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_lyrics=' + userInput + '&page_size=5&page=1&s_track_rating=desc&apikey=' + musixMatchApiKey
    //setLoading(true);
     fetch (musixmatchApiURL)
@@ -37,6 +38,7 @@ function lyricSearch() {
                 artist: tracklist[i].track.artist_name,
                 album: tracklist[i].track.album_name,
                 id : tracklist[i].track.track_id,
+                youtubeSearchCriteria : tracklist[i].track.artist_name.replace(/\s/g, '+') + '+' + tracklist[i].track.track_name.replace(/\s/g, '+') + '+official+music+video',
             }
             resultList.push(result)
         }
@@ -51,7 +53,7 @@ function lyricSearch() {
 }
 
 function generateCard(obj) {
-    console.log("im here", obj)
+    // console.log("im here", obj)
     cardGen.innerHTML += `
             <div class="row">
                 <div class="col s12">
@@ -62,7 +64,7 @@ function generateCard(obj) {
                       <p id="album-name">Album Name: ${obj.album}</p>
                     </div>
                     <div class="card-action">
-                      <a href="#">Music Video</a>
+                      <a class="waves-effect waves-light btn" onclick="searchMusicVid('${obj.youtubeSearchCriteria}')">Music Video</a>
                       <a class="waves-effect waves-light btn" onclick="getLyrics(${obj.id})">Show Lyrics</a>
                     </div>
                   </div>
@@ -77,7 +79,7 @@ function generateLyrics(obj) {
     lyricsGen.innerHTML = `
     <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
-                  <pre>${obj}</pre>
+                  <pre id= "lyrics-box">${obj}</pre>
                 </div>
               </div>
             </div>
@@ -95,13 +97,41 @@ function getLyrics(id) {
         var lyricGen = data.message.body.lyrics.lyrics_body;
     console.log(lyricGen)
     generateLyrics(lyricGen)
+    search()
     console.log(lyricGen)
     })
 }
 
+function search() {
+  if (userInput !== "") {
+  	let text = document.getElementById("lyrics-box").innerHTML;
+  	let re = new RegExp(userInput,"i"); // search for all instances
+		let newText = text.replace(re, `<mark>${userInput}</mark>`);
+		document.getElementById("lyrics-box").innerHTML = newText;
+  }
+}
+
+function searchMusicVid(x) {
+  var musicVideoSearch = youtubeSearch + x + '&key=' + youtubeApiKey;
+  console.log(musicVideoSearch)
+  fetch(musicVideoSearch)
+  .then(function(res){
+    console.log(res)
+    return res.json() })
+  .then(function(data){
+    console.log(data)
+    var video_id = data.items[0].id.videoId
+    var URL = "https://www.youtube.com/watch?v=" + video_id;
+    window.open(URL, '_blank');
+  })
+  
+} 
+
 function inputVal() {
         return document.getElementById("searchbar").value;
 }
+
+
 
 
 //assemble the YouTube search
