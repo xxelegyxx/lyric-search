@@ -20,3 +20,7 @@ Lyricboo also highlights the lyrics that the user searched for in a yellow highl
 This site is using the Musixmatch API as well as the YouTube Data v3 API. 
 
 ![image](https://github.com/xxelegyxx/lyric-search/blob/main/screenshot-api.png)
+
+### Contributors
+
+Joe Wood, Connor Todd, Gulshat Tokhtarova (Group 6)
