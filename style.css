@@ -1,7 +1,7 @@
-* {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .hidden {
@@ -9,10 +9,12 @@
 }
 
 body {
+    text-align: center;  
     background-color:mediumslateblue;
+    margin: 0;
 }
 
-h1 {
+h1, h3 {
     font-family: Helvetica, sans-serif;
     font-style: italic;
     size:100px;
@@ -24,3 +26,30 @@ margin-right: auto;
 margin-left:auto;
 padding-top: 100px;
 }
+
+#search-btn {
+    font-family: Helvetica, sans-serif;
+    border-radius: 35px;
+}
+#search-btn i {
+    padding: 8px;
+    font-size: 1.6em;
+}
+
+
+#search-btn:hover {
+    background: #1deeee;
+    
+}
+#searchbar {
+    width: 33%;
+}
+
+
+
+
+
+
+
+
+
