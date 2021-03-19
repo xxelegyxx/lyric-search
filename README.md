@@ -24,3 +24,7 @@ This site is using the Musixmatch API as well as the YouTube Data v3 API.
 ### Contributors
 
 Joe Wood, Connor Todd, Gulshat Tokhtarova (Group 6)
+
+### :ticket: License 
+
+[MIT](https://choosealicense.com/licenses/mit/)
